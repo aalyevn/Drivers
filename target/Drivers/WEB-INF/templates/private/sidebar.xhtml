@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+    <div id="profile" class="private">
+        <h:link styleClass="text-cap">
+            <i class="fa fa-lg fa-user f-lft"/>
+            <h:panelGroup styleClass="sidebar-user-fullname">
+                #{authBean.checkUser().login}<br/>
+                #{authBean.checkUser().role.title}
+            </h:panelGroup>
+            <ui:remove>
+            <span class="mobile-hide">
+                <i class="fa fa-navicon f-rht"/>
+            </span>
+            </ui:remove>
+        </h:link>
+    </div>
+
+    <div class="button_container private" id="toggle">
+        <span class="top"/>
+        <span class="middle"/>
+        <span class="bottom"/>
+    </div>
+
+    <div class="menu overlay" id="overlay">
+
+        <div id="menu" class="private">
+            <ui:insert name="menu">
+                <ui:include src="menu.xhtml"/>
+            </ui:insert>
+        </div>
+
+
+        <h:form id="settings" class="private" prependId="false">
+            <div class="clear"></div>
+            <h:commandLink action="#{loginManager.logout}" styleClass="link-logout">
+                <i class="fa fa-sign-out"/>
+                <h:outputText value="#{msgs.signOut}"/>
+            </h:commandLink>
+        </h:form>
+    </div>
+</ui:composition>

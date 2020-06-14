@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="
+        http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+        <locale-config>
+            <default-locale>ru</default-locale>
+        </locale-config>
+
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>errors</base-name>
+            <var>errs</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>enums</base-name>
+            <var>enums</var>
+        </resource-bundle>
+
+    </application>
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+    </navigation-rule>
+</faces-config>

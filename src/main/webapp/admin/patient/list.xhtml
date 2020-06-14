@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:form prependId="false">
+            <p:inputText value="#{patientController.name}" styleClass="w-1-1-4 f-lft"
+                         placeholder="#{msgs.name}"/>
+            <p:inputText value="#{patientController.phone}" styleClass="w-1-1-4 f-lft"
+                         placeholder="#{msgs.phone}"/>
+            <h:commandButton value="#{msgs.search}" action="#{patientController.search}"
+                             styleClass="btn btn-blue f-lft m-lft"/>
+            <h:commandButton value="#{msgs.add}" action="#{patientController.add}" styleClass="btn btn-blue f-rht"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="form" prependId="false">
+            <f:view>
+                <f:event type="preRenderView" listener="#{patientController.init}"/>
+            </f:view>
+
+            <p:growl/>
+
+            <p:dataTable id="table" var="patient" value="#{patientController.patientList}"
+                         rowIndexVar="rowId"
+                         editable="true" rows="10"
+                         paginator="true" paginatorPosition="bottom"
+                         tableStyleClass="display-table no-border no-bg text-left"
+                         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown} {CurrentPageReport}">
+
+                <p:column headerText="#{msgs.rowId}" width="60">
+                    <h:outputText value="#{rowId+1}"/>
+                </p:column>
+                <p:column headerText="#{msgs.name}">
+                    <h:outputText value="#{patient.name}"/>
+                </p:column>
+                <p:column headerText="#{msgs.birthday}">
+                    <h:outputText value="#{patientController.getFormatString('dd-MM-yyyy',patient.birthday)}"/>
+                </p:column>
+                <p:column headerText="#{msgs.phone}">
+                    <h:outputText value="#{patient.phone}"/>
+                </p:column>
+                <p:column headerText="#{msgs.address}">
+                    <h:outputText value="#{patient.address}"/>
+                </p:column>
+                <p:column headerText="#{msgs.firstVisit}">
+                    <h:outputText value="#{enums[patient.firstVisit]}"/>
+                </p:column>
+                <p:column headerText="#{msgs.createDate}">
+                    <h:outputText
+                            value="#{patientController.getFormatString('dd-MM-yyyy HH:mm:ss',patient.createDate)}"/>
+                </p:column>
+                <p:column headerText="#{msgs.editDate}">
+                    <h:outputText
+                            value="#{patient.editDate eq null ? '' : patientController.getFormatString('dd-MM-yyyy HH:mm:ss',patient.editDate)}"/>
+                </p:column>
+                <p:column style="text-align: center; width: 100px">
+                    <f:facet name="header">
+                        <i class="fa fa-lg fa-gear"/>
+                    </f:facet>
+                    <p:commandLink action="#{patientController.showHistory(patient)}" styleClass="btn-mng" ajax="false">
+                        <i class="fa fa-lg fa-search"/>
+                    </p:commandLink>
+                    <p:commandLink action="#{patientController.edit(patient)}" styleClass="btn-mng" ajax="false">
+                        <i class="fa fa-lg fa-pencil"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

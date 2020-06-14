@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="base.xhtml">
+
+    <ui:define name="container">
+
+        <div class="error-page">
+
+            <div class="error-page-logo">
+                <h:link outcome="home"><h:graphicImage library="gfx" name="logo_talgat.png"/></h:link>
+            </div>
+
+            <div class="error-content">
+                <ui:insert name="content"/>
+            </div>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

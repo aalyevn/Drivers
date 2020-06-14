@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:outputText styleClass="logo-text f-lft m-top"
+                      value="#{scheduleController.getFormatString('dd-MM-yyyy',scheduleController.schedule.eventDate)} #{scheduleController.getFormatString('HH:mm',scheduleController.schedule.eventTime)}"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:form prependId="false" id="searchForm">
+            <f:view>
+                <f:event type="preRenderView" listener="#{scheduleController.initSearch}"/>
+            </f:view>
+            <p:growl id="messages" showDetail="true"/>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-table-odd-col"
+                         style="width: 440px;" id="searchPanel">
+                <h:outputLabel for="name" value="#{msgs.name}"/>
+                <p:inputText value="#{scheduleController.name}" id="name" styleClass="w-1-1"/>
+
+                <h:outputLabel for="phone" value="#{msgs.phone}"/>
+                <p:inputText value="#{scheduleController.phone}" id="phone" styleClass="w-1-1"/>
+
+                <h:commandButton value="#{msgs.search}" styleClass="btn btn-blue" update=":resultForm:table" ajax="tre"
+                                 action="#{scheduleController.search()}"/>
+                <h:commandButton value="#{msgs.cancel}" styleClass="btn btn-grey" immediate="true"
+                                 action="#{scheduleController.cancel()}"/>
+
+            </h:panelGrid>
+        </h:form>
+        <h:form id="resultForm" prependId="true">
+
+            <p:growl/>
+
+            <p:dataTable id="table" var="patient" value="#{scheduleController.patientList}"
+                         editable="true" rows="10" rowIndexVar="rowId"
+                         lazy="true" multiViewState="true"
+                         paginator="true" paginatorPosition="bottom"
+                         tableStyleClass="display-table no-border no-bg text-left"
+                         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown} {CurrentPageReport}">
+
+                <p:column headerText="#{msgs.rowId}" width="60">
+                    <h:outputText value="#{rowId+1}"/>
+                </p:column>
+                <p:column headerText="#{msgs.name}">
+                    <h:outputText value="#{patient.name}"/>
+                </p:column>
+                <p:column headerText="#{msgs.birthday}">
+                    <h:outputText value="#{patientController.getFormatString('dd-MM-yyyy',patient.birthday)}"/>
+                </p:column>
+                <p:column headerText="#{msgs.phone}">
+                    <h:outputText value="#{patient.phone}"/>
+                </p:column>
+                <p:column headerText="#{msgs.address}">
+                    <h:outputText value="#{patient.address}"/>
+                </p:column>
+                <p:column headerText="#{msgs.firstVisit}">
+                    <h:outputText value="#{enums[patient.firstVisit]}"/>
+                </p:column>
+                <p:column style="text-align: center; width: 100px">
+                    <f:facet name="header">
+                        <i class="fa fa-lg fa-gear"/>
+                    </f:facet>
+                    <p:commandLink action="#{scheduleController.choose(patient)}" styleClass="btn-mng m-lft"
+                                   ajax="false">
+                        <i class="fa fa-lg fa-check-circle" style="color: #8BC34A"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

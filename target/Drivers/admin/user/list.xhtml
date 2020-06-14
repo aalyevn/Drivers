@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:form prependId="false">
+            <h:commandButton value="#{msgs.add}" action="#{userController.add}" styleClass="btn btn-blue f-rht"/>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form" prependId="false">
+            <f:view>
+                <f:event type="preRenderView" listener="#{userController.init}"/>
+            </f:view>
+            <p:growl/>
+            <p:dataTable id="table" var="user" value="#{userController.userList}"
+                         editable="true" rows="10" rowIndexVar="rowId"
+                         paginator="true" paginatorPosition="bottom"
+                         tableStyleClass="display-table no-border no-bg text-left"
+                         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown} {CurrentPageReport}">
+                <p:column headerText="#{msgs.rowId}" width="60">
+                    <h:outputText value="#{rowId+1}"/>
+                </p:column>
+                <p:column headerText="#{msgs.firstName}">
+                    <h:outputText value="#{user.name}"/>
+                </p:column>
+                <p:column headerText="#{msgs.lastName}">
+                    <h:outputText value="#{user.surname}"/>
+                </p:column>
+                <p:column headerText="#{msgs.username}">
+                    <h:outputText value="#{user.login}"/>
+                </p:column>
+                <p:column headerText="#{msgs.userRole}">
+                    <h:outputText value="#{enums[user.role.description]}"/>
+                </p:column>
+                <p:column style="text-align: center; width: 100px">
+                    <f:facet name="header">
+                        <i class="fa fa-lg fa-gear"/>
+                    </f:facet>
+                    <p:commandLink action="#{userController.edit(user)}" styleClass="btn-mng" ajax="false">
+                        <i class="fa fa-lg fa-pencil"/>
+                    </p:commandLink>
+                    <p:commandLink action="#{userController.delete(user)}" styleClass="btn-mng" title="#{msgs.delete}"
+                                   ajax="false">
+                        <p:confirm header="#{msgs.deletion}" message="#{msgs.confirmDeletion}"
+                                   icon="ui-icon-alert"/>
+                        <i class="fa fa-lg fa-trash"/>
+                    </p:commandLink>
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog global="true" showEffect="fade" closeOnEscape="true" severity="info">
+                <p:commandLink type="button" styleClass="btn btn-green ui-confirmdialog-yes">
+                    <i class="fa fa-lg fa-check"/>
+                </p:commandLink>
+                <p:commandLink type="button" styleClass="btn btn-red ui-confirmdialog-no m-lft">
+                    <i class="fa fa-lg fa-close"/>
+                </p:commandLink>
+            </p:confirmDialog>
+        </h:form>
+    </ui:define>
+</ui:composition>

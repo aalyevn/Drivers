@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../javax.faces.resource/PTSans-Regular.eot.xhtml?ln=fonts');
+    src: url('../javax.faces.resource/PTSans-Regular.eot?#iefix.xhtml?ln=fonts') format('embedded-opentype'),
+    url('../javax.faces.resource/PTSans-Regular.woff.xhtml?ln=fonts') format('woff'),
+    url('../javax.faces.resource/PTSans-Regular.ttf.xhtml?ln=fonts') format('truetype'),
+    url('../javax.faces.resource/PTSans-Regular.svg#PTSans-Regular.xhtml?ln=fonts') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../javax.faces.resource/PTSans-Bold.eot.xhtml?ln=fonts');
+    src: url('../javax.faces.resource/PTSans-Bold.eot?#iefix.xhtml?ln=fonts') format('embedded-opentype'),
+    url('../javax.faces.resource/PTSans-Bold.woff.xhtml?ln=fonts') format('woff'),
+    url('../javax.faces.resource/PTSans-Bold.ttf.xhtml?ln=fonts') format('truetype'),
+    url('../javax.faces.resource/PTSans-Bold.afm#PTSans-Bold.xhtml?ln=fonts') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Euro Plate';
+    src: url('../javax.faces.resource/EuroPlate.ttf.xhtml?ln=fonts') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    color: rgba(0, 0, 0, .87);
+    background: #fff;
+    font: 1em/1.5 'PT Sans', 'Arial', 'Liberation Sans', FreeSans, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.pre,
+pre,
+code {
+    font-family: 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+}
+
+/* `Headings
+----------------------------------------------------------------------------------------------------*/
+
+h1 {
+    font-size: 1.25em;
+}
+
+h2 {
+    font-size: 1.125em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+h4 {
+    font-size: 0.875em;
+}
+
+h5 {
+    font-size: 0.8125em;
+}
+
+h6 {
+    font-size: 0.75em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+/* `Spacing
+----------------------------------------------------------------------------------------------------*/
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+li {
+    list-style: none inside;
+}
+
+a {
+    color: inherit;
+}
+
+.title {
+    font: 1.125em/1.5 'PT Sans', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}

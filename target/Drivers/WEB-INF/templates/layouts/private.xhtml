@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="base.xhtml">
+
+    <ui:define name="head">
+        <ui:insert name="private-head"/>
+    </ui:define>
+
+    <ui:define name="wrap-container">
+
+        <div id="container">
+
+            <div id="sidebar" class="private #{loginManager.currentUserRole}">
+                <ui:include src="../private/sidebar.xhtml"/>
+            </div>
+
+            <div id="top-content" class="private">
+                <ui:insert name="top-content"/>
+            </div>
+
+            <div id="content" class="private">
+                <ui:insert name="content"/>
+            </div>
+
+            <div class="clear"/>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layouts/error.xhtml">
+
+    <ui:define name="title">401</ui:define>
+
+    <ui:define name="content">
+
+        <div class="error-code error-401 t-ctr">#{msgs.notAuthorized}</div>
+
+        <div class="error-msg t-ctr">
+            #{msgs.notAuthorizedAccess}
+        </div>
+
+        <div class="error-actions t-ctr m-top">
+            <h:link outcome="home" value="#{msgs.signIn}" styleClass="t-udl"/>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

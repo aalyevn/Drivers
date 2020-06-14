@@ -1,0 +1,120 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:form prependId="false">
+            <h:commandButton value="#{msgs.add}" action="#{scheduleController.checkDate}" styleClass="btn btn-blue f-rht"/>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+
+
+        <h:form id="form" prependId="false">
+            <p:growl sticky="true"/>
+            <f:view>
+                <f:event type="preRenderView" listener="#{scheduleController.init}"/>
+            </f:view>
+            <h:panelGroup layout="block" styleClass="form-block-view w-1-2 f-lft m-rht-2x">
+                <div class="form-block-view-heading">
+                    #{msgs.schedule}
+                    <div class="f-rht">
+                        #{scheduleController.getFormatString('dd.MM.yyyy',scheduleController.getCurrentDate(0))}
+                    </div>
+                </div>
+                <div class="form-block-view-data">
+                    <p:dataTable value="#{scheduleController.currentScheduleReport}" var="schedule"
+                                 paginator="false"
+                                 tableStyleClass="display-table no-border no-bg text-left">
+                        <p:column headerText="#{msgs.time}">
+                            #{schedule.time}
+                        </p:column>
+                        <p:column headerText="#{msgs.name}">
+                            #{schedule.patient.name}
+                        </p:column>
+                        <p:column headerText="#{msgs.firstVisit}">
+                            #{enums[schedule.patient.firstVisit]}
+                        </p:column>
+                        <p:column style="width: 80px; text-align: center;">
+                            <f:facet name="header">
+                                <i class="fa fa-lg fa-gear"/>
+                            </f:facet>
+                            <p:commandLink
+                                    action="#{scheduleController.add(scheduleController.getCurrentDate(0),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient eq null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-plus-circle"/>
+                            </p:commandLink>
+                            <p:commandLink
+                                    action="#{scheduleController.edit(scheduleController.getCurrentDate(0),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient.name ne null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-pencil"/>
+                            </p:commandLink>
+                            <p:commandLink
+                                    action="#{scheduleController.delete(scheduleController.getCurrentDate(0),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient ne null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-trash"/>
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="form-block-view w-1-2 f-lft m-rht">
+                <div class="form-block-view-heading">
+                    #{msgs.schedule}
+                    <div class="f-rht">
+                        #{scheduleController.getFormatString('dd.MM.yyyy',scheduleController.getCurrentDate(1))}
+                    </div>
+                </div>
+                <div class="form-block-view-data">
+                    <p:dataTable value="#{scheduleController.nextScheduleReport}" var="schedule"
+                                 paginator="false"
+                                 tableStyleClass="display-table no-border no-bg text-left">
+                        <p:column headerText="#{msgs.time}">
+                            #{schedule.time}
+                        </p:column>
+                        <p:column headerText="#{msgs.name}">
+                            #{schedule.patient.name}
+                        </p:column>
+                        <p:column headerText="#{msgs.firstVisit}">
+                            #{enums[schedule.patient.firstVisit]}
+                        </p:column>
+                        <p:column style="width: 80px; text-align: center;">
+                            <f:facet name="header">
+                                <i class="fa fa-lg fa-gear"/>
+                            </f:facet>
+                            <p:commandLink
+                                    action="#{scheduleController.add(scheduleController.getCurrentDate(1),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient.name eq null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-plus-circle"/>
+                            </p:commandLink>
+                            <p:commandLink
+                                    action="#{scheduleController.edit(scheduleController.getCurrentDate(1),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient.name ne null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-pencil"/>
+                            </p:commandLink>
+                            <p:commandLink
+                                    action="#{scheduleController.delete(scheduleController.getCurrentDate(1),schedule.time)}"
+                                    styleClass="btn-mng" rendered="#{schedule.patient ne null}"
+                                    ajax="false" immediate="true">
+                                <i class="fa fa-lg fa-trash"/>
+                            </p:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup/>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

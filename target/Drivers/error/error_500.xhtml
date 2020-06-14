@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layouts/error.xhtml">
+
+    <ui:define name="title">500</ui:define>
+
+    <ui:define name="content">
+
+        <div class="error-code error-500 t-ctr">#{msgs.internalError}</div>
+
+        <div class="error-msg t-ctr">
+            #{msgs.internalServerError}.
+        </div>
+
+        <div class="error-actions t-ctr m-top">
+            <a href="#" onClick="history.go(-1); return false;" class="t-udl">#{msgs.goBack}</a>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

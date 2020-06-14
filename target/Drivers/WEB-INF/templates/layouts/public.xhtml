@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="base.xhtml">
+
+    <ui:define name="outer-wrap-header">
+
+        <div id="wrap-top-header">
+            <ui:insert name="wrap-header">
+                <div id="top-header" class="grid">
+                    <ui:insert name="top-header">
+
+                    </ui:insert>
+                </div>
+            </ui:insert>
+            <div class="clear"></div>
+        </div>
+
+        <div id="wrap-header">
+            <ui:insert name="wrap-header">
+                <div id="header" class="grid">
+                    <ui:insert name="header">
+
+                    </ui:insert>
+                </div>
+                <div class="clear"></div>
+            </ui:insert>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

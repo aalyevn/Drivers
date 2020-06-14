@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:outputText styleClass="logo-text f-lft m-top"
+                      value="#{patientController.choosedPatient.name}   #{patientController.getFormatString('dd.MM.yyyy',patientController.choosedPatient.birthday)}   -   #{patientController.choosedPatient.phone}"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="form" prependId="false">
+            <f:view>
+                <f:event type="preRenderView" listener="#{patientController.initPatient}"/>
+            </f:view>
+
+            <p:growl/>
+
+            <p:dataTable id="table" var="history" value="#{patientController.historyList}"
+                         rowIndexVar="rowId"
+                         editable="true" rows="10"
+                         paginator="true" paginatorPosition="bottom"
+                         tableStyleClass="display-table no-border no-bg text-left"
+                         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown} {CurrentPageReport}">
+
+                <p:column headerText="#{msgs.rowId}" width="60">
+                    <h:outputText value="#{rowId+1}"/>
+                </p:column>
+                <p:column headerText="#{msgs.eventDate}">
+                    <h:outputText
+                            value="#{patientController.getFormatString('dd-MM-yyyy',history.eventDate)} #{patientController.getFormatString('HH:mm',history.eventTime)}"/>
+                </p:column>
+                <p:column headerText="#{msgs.allergy}">
+                    <h:outputText value="#{history.allergy}"/>
+                </p:column>
+                <p:column headerText="#{msgs.diagnosis}">
+                    <h:outputText value="#{history.diagnosis}"/>
+                </p:column>
+                <p:column headerText="#{msgs.notes}">
+                    <h:outputText value="#{history.notes}"/>
+                </p:column>
+                <p:column headerText="#{msgs.totalWork}">
+                    <h:outputText value="#{history.totalWork}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <div class="logo f-lft clearfix">
+        <h:link outcome="home" styleClass="clearfix">
+            <h:graphicImage library="gfx" name="eid_logo.svg"/>
+        </h:link>
+    </div>
+
+    <div class="button_container" id="toggle">
+        <span class="top"/>
+        <span class="middle"/>
+        <span class="bottom"/>
+    </div>
+
+    <div class="f-rht clearfix menu overlay" id="overlay">
+        <nav class="overlay-menu">
+            <ul>
+                <!--<li><h:link outcome="home" value="#{msgs.main}"/></li>-->
+                <!--<li><h:link outcome="/prices" value="#{msgs.priceList}"/></li>-->
+                <!--<li><h:link outcome="public-auctions" value="#{msgs.auctions}"/></li>-->
+                <!--<li><h:link outcome="public-plates" value="#{msgs.nonAuctionPlates}"/></li>-->
+                <!--<li><h:link outcome="/instructions" value="#{msgs.instructions}"/></li>-->
+                <!--<li><h:link outcome="/npa/decree.xhtml" value="#{msgs.npa}"/></li>-->
+                <!--<li><h:link outcome="/policies/faq" value="#{msgs.FAQ}"/></li>-->
+                <!--<li><h:link outcome="/contacts" value="#{msgs.contacts}"/></li>-->
+            </ul>
+        </nav>
+    </div>
+
+    <ui:remove>
+        <h:form styleClass="f-rht">
+            <h:link outcome="login" value="#{msgs.login}" styleClass="link-login f-rht"/>
+        </h:form>
+
+        <h:form styleClass="language-bar f-rht m-rht-2x" rendered="true">
+            <h:commandLink value="#{msgs.kyrgyzLang}" action="#{localeManager.changeLocale('ky')}"
+                           styleClass="language-choice" rendered="#{localeManager.locale == 'ru'}"/>
+            <h:commandLink value="#{msgs.russianLang}" action="#{localeManager.changeLocale('ru')}"
+                           styleClass="language-choice" rendered="#{localeManager.locale == 'ky'}"/>
+        </h:form>
+    </ui:remove>
+
+</ui:composition>

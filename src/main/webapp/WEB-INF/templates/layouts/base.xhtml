@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:insert name="metadata"/>
+
+<f:view locale="#{localeManager.locale}" encoding="UTF-8">
+    <h:head>
+        <title><ui:insert name="title"/>#{msgs.appTitle}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <ui:insert name="favicon">
+            <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/gfx/logo_talgat.png"/>
+        </ui:insert>
+
+        <ui:insert name="head"/>
+    </h:head>
+
+    <h:body>
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="reset.css"/>
+            <h:outputStylesheet library="css" name="grid.css"/>
+            <h:outputStylesheet library="css" name="text.css"/>
+            <h:outputStylesheet library="css" name="ui-util.css"/>
+            <h:outputStylesheet library="css" name="styles.css"/>
+            <h:outputStylesheet library="vendor" name="font-awesome-4.7.0/css/font-awesome.min.css"/>
+        </f:facet>
+
+        <ui:insert name="wrap-container">
+
+            <div id="container" class="#{styleClass}">
+
+                <ui:insert name="container">
+
+                    <ui:insert name="outer-wrap-header">
+
+                        <div id="wrap-header">
+
+                            <ui:insert name="wrap-header">
+
+                                <div id="header" class="grid">
+
+                                    <ui:include src="/WEB-INF/templates/public/header.xhtml"/>
+
+                                </div>
+                                <div class="clear"></div>
+
+                            </ui:insert>
+
+                        </div>
+
+                    </ui:insert>
+
+                    <div class="clear"></div>
+
+                    <ui:insert name="outer-wrap-content">
+
+                        <div id="wrap-content">
+
+                            <ui:insert name="wrap-content">
+
+                                <div id="content" class="grid">
+
+                                    <ui:insert name="content"/>
+
+                                </div>
+
+                            </ui:insert>
+
+                        </div>
+
+                    </ui:insert>
+
+
+                    <ui:insert name="outer-wrap-footer">
+
+                        <div id="wrap-footer">
+
+                            <ui:insert name="wrap-footer">
+
+                                <div id="footer" class="grid">
+
+                                    <ui:insert name="footer">
+                                        <ui:include src="/WEB-INF/templates/public/footer.xhtml"/>
+                                    </ui:insert>
+
+                                </div>
+
+                            </ui:insert>
+
+                        </div>
+
+                    </ui:insert>
+
+                </ui:insert>
+
+            </div>
+
+        </ui:insert>
+
+    </h:body>
+</f:view>
+</html>

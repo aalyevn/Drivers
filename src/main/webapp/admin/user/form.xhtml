@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form" prependId="false">
+            <p:growl sticky="true"/>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-table-odd-col" style="width: 440px;">
+                <h:outputLabel for="name" value="#{msgs.firstName}"/>
+                <p:inputText value="#{userController.user.name}" id="name" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.firstName} - #{errs.requiredField}"/>
+                <h:outputLabel for="surname" value="#{msgs.lastName}"/>
+                <p:inputText value="#{userController.user.surname}" id="surname" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.lastName} - #{errs.requiredField}"/>
+                <h:outputLabel for="login" value="#{msgs.username}"/>
+                <p:inputText value="#{userController.user.login}" id="login" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.username} - #{errs.requiredField}">
+                    <f:attribute name="userId" value="#{userController.user.id}"/>
+                    <f:validator binding="#{usernameValidator}"/>
+                </p:inputText>
+                <h:outputLabel for="password" value="#{msgs.password}"/>
+                <h:panelGroup>
+                    <p:inputText value="#{userController.password}" id="password" styleClass="w-1-1"
+                                 required="#{userController.user.id == null}"
+                                 requiredMessage="#{msgs.password} - #{errs.requiredField}"/>
+                </h:panelGroup>
+                <h:outputLabel for="roles" value="#{msgs.userRole}"/>
+                <p:selectOneMenu id="roles" value="#{userController.user.role}" styleClass="w-1-1"
+                                 converter="cachedConverter">
+                    <f:selectItem itemLabel="#{msgs.selectRole}" noSelectionOption="true"/>
+                    <f:selectItems value="#{userController.roles}" var="role" itemValue="#{role}"
+                                   itemLabel="#{msgs[role.title]}"/>
+                </p:selectOneMenu>
+            </h:panelGrid>
+            <h:panelGroup/>
+            <h:panelGroup>
+                <h:commandButton value="#{msgs.save}" action="#{userController.save}" styleClass="btn btn-green"/>
+                <h:commandButton value="#{msgs.cancel}" action="#{userController.back}"
+                                 styleClass="btn btn-orange m-lft"
+                                 immediate="true"/>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

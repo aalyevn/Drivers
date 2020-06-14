@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ul role="menu">
+        <h:panelGroup rendered="#{loginManager.hasRole('admin')}">
+            <li>
+                <h:link outcome="/admin/patient/list.xhtml">
+                    <i class="fa fa-users"/>
+                    <h:outputText value="#{msgs.patients}"/>
+                </h:link>
+            </li>
+            <li>
+                <h:link outcome="/admin/schedule/list.xhtml">
+                    <i class="fa fa-calendar"/>
+                    <h:outputText value="#{msgs.schedule}"/>
+                </h:link>
+            </li>
+            <!--<li>-->
+                <!--<h:link outcome="/admin/user/list.xhtml">-->
+                    <!--<i class="fa fa-user-circle"/>-->
+                    <!--<h:outputText value="#{msgs.users}"/>-->
+                <!--</h:link>-->
+            <!--</li>-->
+        </h:panelGroup>
+    </ul>
+
+</ui:composition>

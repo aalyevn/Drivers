@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layouts/error.xhtml">
+
+    <ui:define name="title">#{msgs.sessionExpired}</ui:define>
+
+    <ui:define name="content">
+
+        <div class="error-code error-500 t-ctr">#{msgs.sessionExpired}</div>
+
+        <div class="error-msg t-ctr">
+            #{msgs.yourSessionExpired}.
+        </div>
+
+        <div class="error-actions t-ctr m-top">
+            <h:link outcome="login" value="#{msgs.signIn}" styleClass="t-udl"/>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

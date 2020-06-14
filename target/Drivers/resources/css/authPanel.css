@@ -1,0 +1,32 @@
+/* 
+    Document   : authPanel
+    Created on : May 22, 2014, 10:28:09 AM
+    Author     : kbakytbekov
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+    font-size:12px;
+}
+
+#authPanel {
+    width:300px;
+    margin:0 auto;
+}
+body {
+    font-size:12px;
+}
+html {
+    font-size:12px;
+}
+
+.ui-layout-north {
+    z-index: 20 !important;
+}
+
+.ui-layout-north .ui-widget-content {
+    overflow:visible;
+}
+

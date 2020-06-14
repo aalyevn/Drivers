@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layouts/sign.xhtml">
+
+    <ui:define name="sign-content">
+
+        <h:form styleClass="form-blc form-sign-blc" id="sign-blc-form" prependId="false">
+
+            <p:growl sticky="true"/>
+
+            <div class="form-blc-input-wrap">
+                <p:inputText value="#{authBean.username}" id="phone-number" autocomplete="off"
+                             required="true" requiredMessage="#{errs.enterUsername}"
+                             styleClass="form-blc-input" tabindex="1"
+                             name="phone-number"/>
+                <p:watermark value="#{msgs.username}" for="phone-number"/>
+            </div>
+            <div class="form-blc-input-wrap">
+                <p:password value="#{authBean.password}" id="password" redisplay="true" autocomplete="off"
+                            required="true" requiredMessage="#{errs.enterPassword}"
+                            styleClass="form-blc-input" tabindex="2"/>
+                <p:watermark value="#{msgs.password}" for="password"/>
+            </div>
+
+
+            <div class="clear"></div>
+            <div class="form-blc-input-wrap">
+            <h:commandButton value="#{msgs.signIn}" action="#{authBean.login}"
+                             styleClass="form-blc-input btn btn-green" tabindex="3">
+            </h:commandButton>
+            </div>
+            <div class="clear"></div>
+
+            <h:commandButton value="#{msgs.register}" action="#{authBean.addDrivers}"
+                             styleClass=" form-blc-input btn btn-green" tabindex="4">
+            </h:commandButton>
+            <ui:remove>
+                <div class="sign-links">
+                    <h:commandButton value="Создать" action="#{authBean.add()}"/>
+                </div>
+            </ui:remove>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+
+
+

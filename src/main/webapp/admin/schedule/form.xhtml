@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/layouts/private.xhtml">
+
+    <ui:define name="top-content">
+        <h:outputText styleClass="logo-text f-lft m-top"
+                      value="#{scheduleController.getFormatString('dd-MM-yyyy',scheduleController.schedule.eventDate)} #{scheduleController.getFormatString('HH:mm',scheduleController.schedule.eventTime)}"/>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="form" prependId="false">
+            <p:growl sticky="true"/>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-table-odd-col" style="width: 440px;">
+                <h:outputLabel for="name" value="#{msgs.firstName}"/>
+                <p:inputText value="#{scheduleController.schedule.patient.name}" id="name" styleClass="w-1-1"
+                             readonly="true"/>
+                <h:outputLabel for="birthday" value="#{msgs.birthday}"/>
+                <p:inputText
+                        value="#{scheduleController.getFormatString('dd-MM-yyyy',scheduleController.schedule.patient.birthday)}"
+                        id="birthday" styleClass="w-1-1"
+                        readonly="true"/>
+                <h:outputLabel for="phone" value="#{msgs.phone}"/>
+                <p:inputText value="#{scheduleController.schedule.patient.phone}" id="phone" styleClass="w-1-1"
+                             readonly="true"/>
+            </h:panelGrid>
+            <h:panelGrid columns="3" styleClass="form-table" columnClasses="form-table-odd-col" style="width: 660px;">
+                <h:outputLabel for="allergy" value="#{msgs.allergy}"/>
+                <p:inputTextarea value="#{scheduleController.schedule.allergy}" id="allergy" styleClass="w-1-1"
+                                 autoResize="false" maxlength="255" counter="displayAllergy"
+                                 counterTemplate="Осталось символов: {0}" rows="30"/>
+                <h:outputLabel id="displayAllergy"/>
+                <h:outputLabel for="diagnosis" value="#{msgs.diagnosis}"/>
+                <p:inputTextarea value="#{scheduleController.schedule.diagnosis}" id="diagnosis" styleClass="w-1-1"
+                                 autoResize="false" maxlength="255" counter="displayDiagnosis"
+                                 counterTemplate="Осталось символов: {0}" rows="30"/>
+                <h:outputLabel id="displayDiagnosis"/>
+                <h:outputLabel for="notes" value="#{msgs.notes}"/>
+                <p:inputTextarea value="#{scheduleController.schedule.notes}" id="notes" styleClass="w-1-1"
+                                 autoResize="false" maxlength="255" counter="displayNotes"
+                                 counterTemplate="Осталось символов: {0}" rows="30"/>
+                <h:outputLabel id="displayNotes"/>
+                <h:outputLabel for="totalWork" value="#{msgs.totalWork}"/>
+                <p:inputTextarea value="#{scheduleController.schedule.totalWork}" id="totalWork" styleClass="w-1-1"
+                                 autoResize="false" maxlength="255" counter="displayTotalWork"
+                                 counterTemplate="Осталось символов: {0}" rows="30"/>
+                <h:outputLabel id="displayTotalWork"/>
+            </h:panelGrid>
+            <h:panelGroup/>
+            <h:panelGroup>
+                <br/><br/>
+                <h:commandButton value="#{msgs.save}" action="#{scheduleController.save}" styleClass="btn btn-green"/>
+                <h:commandButton value="#{msgs.cancel}" action="#{scheduleController.cancel}"
+                                 styleClass="btn btn-orange m-lft"
+                                 immediate="true"/>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+</ui:composition>

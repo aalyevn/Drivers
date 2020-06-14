@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:outputLink value="tel: 119" styleClass="f-lft" id="tel">
+        <i class="fa fa-phone"/>
+        <h:outputText value="Call Center: 119" styleClass="phone"/>
+    </h:outputLink>
+    <p:tooltip for="tel" value="#{msgs.freeCall}"/>
+
+    <h:form styleClass="language-bar f-rht" rendered="true">
+        <h:commandLink value="KG" action="#{localeManager.changeLocale('ky')}"
+                       styleClass="language-choice" rendered="#{localeManager.locale == 'ru'}"/>
+        <h:commandLink value="RU" action="#{localeManager.changeLocale('ru')}"
+                       styleClass="language-choice" rendered="#{localeManager.locale == 'ky'}"/>
+    </h:form>
+
+    <h:form styleClass="f-rht">
+        <h:link outcome="login" styleClass="link-login f-rht">
+            <i class="fa fa-user"/>
+            <h:outputText value="#{msgs.privateRoom}"/>
+        </h:link>
+    </h:form>
+
+</ui:composition>

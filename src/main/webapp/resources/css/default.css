@@ -1,0 +1,29 @@
+/* 
+    Document   : default
+    Created on : Dec 3, 2013, 12:16:59 PM
+    Author     : skiyazov
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+    font-size:12px;
+}
+
+body {
+    font-size:12px;
+}
+
+html {
+    font-size:12px;
+}
+
+.ui-layout-north {
+    z-index:20 !important;
+    overflow:visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+    overflow:visible !important;
+}

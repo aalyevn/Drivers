@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/layouts/sign.xhtml">
+
+    <ui:define name="sign-content">
+
+        <h:form id="form" prependId="false">
+            <p:growl sticky="true"/>
+            <h:panelGrid columns="2" styleClass="form-table" columnClasses="form-table-odd-col" style="width: 440px;">
+
+                <h:outputLabel for="name" value="#{msgs.name}"/>
+                <p:inputText value="#{patientController.patient.name}" id="name" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.name} - #{errs.requiredField}"/>
+
+                <h:outputLabel for="phone" value="#{msgs.phone}"/>
+                <p:inputText value="#{patientController.patient.phone}" id="phone" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.phone} - #{errs.requiredField}"/>
+
+                <h:outputLabel for="address" value="#{msgs.address}"/>
+                <p:inputText value="#{patientController.patient.address}" id="address" styleClass="w-1-1"
+                             required="true" requiredMessage="#{msgs.address} - #{errs.requiredField}"/>
+
+                <h:outputLabel for="birthday" value="#{msgs.birthday}"/>
+                <p:calendar value="#{patientController.patient.birthday}" id="birthday" styleClass="w-1-1"
+                            placeholder="#{msgs.birthday}" navigator="true"/>
+            </h:panelGrid>
+            <br/>
+            <h:panelGroup>
+                <h:commandButton value="#{msgs.save}" action="#{patientController.save}" styleClass="btn btn-green"/>
+                <h:commandButton value="#{msgs.cancel}" action="#{patientController.back}"
+                                 styleClass="btn btn-orange m-lft"
+                                 immediate="true"/>
+            </h:panelGroup>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
+
+
+
